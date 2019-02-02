@@ -25,6 +25,7 @@ public class LoginTests {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+
     
     @Test
     public void loginTest1() {
@@ -35,7 +36,7 @@ public class LoginTests {
         Assert.assertEquals(title, "Web Orders");
     }
 
-  
+
     @Test
     public void negativeloginTest() {
         driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx");
@@ -46,23 +47,20 @@ public class LoginTests {
         Assert.assertEquals(errorMsg, "Invalid Login or Password.");
     }
 
-    
-    @Test
-    public void logOutTest() {
-        driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx");
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
-        driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test" + Keys.ENTER);
 
-        driver.findElement(By.id("ctl00_logout")).click();
-        String title = driver.getTitle();
-        Assert.assertEquals(title, "Web Orders Login");
+        @Test
+        public void logOutTest() {
+            driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx");
+            driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
+            driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test" + Keys.ENTER);
 
-    }
+            driver.findElement(By.id("ctl00_logout")).click();
+            String title = driver.getTitle();
+            Assert.assertEquals(title, "Web Orders Login");
 
+        }
 
-    
-    
-    @AfterMethod
+        @AfterMethod
     public void cleanUp() {
         driver.close();
     }
