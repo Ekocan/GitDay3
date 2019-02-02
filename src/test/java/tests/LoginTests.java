@@ -25,7 +25,10 @@ public class LoginTests {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+
+
     @Test
+
     public void negativeloginTest() {
         driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx");
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester2");
@@ -36,13 +39,19 @@ public class LoginTests {
     }
 
     @Test
+
     public void logOutTest(){
         driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx");
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test" + Keys.ENTER);
 
+
          String title = driver.getTitle();
         Assert.assertEquals(title, "Web Orders");
+
+        driver.findElement(By.id("ctl00_logout")).click();
+        Assert.assertEquals(driver.getTitle(),"Web Orders Login");
+
     }
 
     @AfterMethod
